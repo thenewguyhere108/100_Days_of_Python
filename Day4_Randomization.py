@@ -29,6 +29,9 @@ scissors = '''
 
 print("What do you choose? Type 0 for Rock , Type 1 for Paper, Type 2 for Scissors")
 b = int(input())
+if b > 3 or b < 0:
+    print("You chose a wrong number. Game Over")
+    exit()
 a = [rock, paper, scissors]
 print(a[b])
 print('Computer Chose:')
