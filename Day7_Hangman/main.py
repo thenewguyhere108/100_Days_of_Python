@@ -35,7 +35,7 @@ def score():  # This function dynamically assigns value to the point variable tr
 print(logo) 
 sleep(0.5)
 while not Game_over:  # This is our main while loop where the whole game runs ,
-    system('cls')
+    system('cls | clear')
     if lives == 0:
         Result, Game_over = 'lost', True
         break
