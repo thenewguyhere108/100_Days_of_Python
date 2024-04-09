@@ -1,7 +1,15 @@
 from words import hangman, logo, words
 from random import randint as rand
-from os import system
+from os import system, name
 from time import sleep
+
+
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
+
 
 lives = 6
 answer = words[rand(0, len(words) - 1)].lower()  # Create a random answer everytime the code is written
@@ -35,7 +43,7 @@ def score():  # This function dynamically assigns value to the point variable tr
 print(logo) 
 sleep(0.5)
 while not Game_over:  # This is our main while loop where the whole game runs ,
-    system('cls')
+    clear()
     if lives == 0:
         Result, Game_over = 'lost', True
         break
