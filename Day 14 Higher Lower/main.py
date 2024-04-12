@@ -25,7 +25,7 @@ while True:
             print(f'Your score is :{score}')
         print(f"Compare A: {A['name']}, {A['description']}, from {A['country']}")
         print(vs,'\n')
-        print(f"Compare A: {B['name']}, {B['description']}, from {B['country']} \n")
+        print(f"Versus B: {B['name']}, {B['description']}, from {B['country']} \n")
         while True:
             choice = input("Who has more followers? A or B : ").lower()
             if choice != 'a' and choice !='b':
