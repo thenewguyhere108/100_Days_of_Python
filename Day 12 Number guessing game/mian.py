@@ -22,14 +22,16 @@ while True:
             print('invalid input try again')
     while chance > 0 :
         print(f'You have {chance} chances remaining')
-        guess = int(input('Enter your guess : '))
-        if guess == answer:
+        guess = (input('Enter your guess : '))
+        if not str.isdigit(str(guess)):
+            print("Please enter a valid number")        
+        elif int(guess) == answer:
             print(f'Congratulations , The number is {answer}')
             break
-        elif guess > answer:
+        elif int(guess) > answer:
             print('Too high')
             chance -= 1
-        elif guess < answer:
+        elif int(guess) < answer:
             print('Too low')
             chance -= 1
     if chance == 0:
