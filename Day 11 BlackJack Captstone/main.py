@@ -10,12 +10,12 @@ def initial_deal ():
     while len(player_cards) < 2:
         player_cards.append(cards[randint(0,13)])
         computer_cards.append(cards[randint(0,13)])    
-    if sum(computer_cards) ==  21:
-        if sum(player_cards) == 21:
+    if sum(computer_cards) ==  21 and sum(player_cards) == 21:
             print('Both players have blackjack, Game Draw')
             Game_over = True
-        else :
-            print('Computer has blackjack, Computer Wins')
+    else :
+        if sum(computer_cards) == 21:
+            print('Computer wins with a blackjack')
             Game_over = True
 
 
@@ -27,9 +27,10 @@ def calculate_score():
         player_points -= 10
     if 11 in computer_cards and computer_points > 21:
         computer_points -= 10
+    if computer_points == 21 or player_points == 21:
+        Game_over = True
     if player_points > 21 or computer_points > 21:
         Game_over = True
-
 
 def deal_card(cards_list):
     cards_list.append(cards[randint(0,13)])
@@ -82,6 +83,8 @@ def draw_card():
             deal_card(player_cards)
             computer_choice()
             calculate_score()
+            if Game_over:
+                break
             display_scores()
         elif choice == 'n':
             computer_choice()
