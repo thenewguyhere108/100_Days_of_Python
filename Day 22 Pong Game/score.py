@@ -1,16 +1,16 @@
 from turtle import Turtle
 
 FONT = 'Arial'
-FONT_SIZE = 55
+FONT_SIZE = 50
 
 
 class Score:
     def __init__(self):
         self.middle_line = []
         self.create_middle_line()
-        self.user_score, self.pc_score = 0, 0
-        self.usr_board = self.score_board('user', -140, 400)
-        self.pc_board = self.score_board('pc', 100, 400)
+        self.user_score, self.user2_score = 0, 0
+        self.usr_board = self.score_board('user', -140, 180)
+        self.usr2_board = self.score_board('pc', 100, 180)
         pass
 
     def create_middle_line(self):
@@ -36,11 +36,11 @@ class Score:
         if name == 'user':
             score.write(self.user_score, font=(FONT, FONT_SIZE, "bold"))
         elif name == 'pc':
-            score.write(self.pc_score, font=(FONT, FONT_SIZE, "bold"))
+            score.write(self.user2_score, font=(FONT, FONT_SIZE, "bold"))
         return score
 
     def update_score(self):
         self.usr_board.clear()
-        self.pc_board.clear()
+        self.usr2_board.clear()
         self.usr_board.write(self.user_score, font=(FONT, FONT_SIZE, "bold"))
-        self.pc_board.write(self.pc_score, font=(FONT, FONT_SIZE, "bold"))
+        self.usr2_board.write(self.user2_score, font=(FONT, FONT_SIZE, "bold"))
