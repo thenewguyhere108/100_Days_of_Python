@@ -1,47 +1,24 @@
 from turtle import Turtle
 MOVE_DISTANCE = 20
 
-
-class Players:
+class Players(Turtle):
     def __init__(self, pos):
-        self.bar = self.create_stick(pos)
+        super().__init__()
+        self.create_stick(pos)
 
     def create_stick(self, pos):
-        stick = []
-        for i in (40, 20, 0, -20, -40):
-            tim = Turtle('square')
-            tim.color('white')
-            tim.speed('fastest')
-            tim.penup()
-            tim.goto(x=pos, y=i)
-            stick.append(tim)
-        return stick
+        self.shape('square')
+        self.color('white')
+        self.speed('fastest')
+        self.resizemode(rmode='user')
+        self.shapesize(stretch_len=1, stretch_wid=5)
+        self.penup()
+        self.goto(x=pos, y=-20)
 
     def move_up(self):
-        pos = None
-        if self.bar[0].ycor() < 240:
-            print(self.bar[0].ycor())
-            for i in range(5):
-                if i == 0:
-                    self.bar[i].setheading(90)
-                    pos = list(self.bar[i].pos())
-                    self.bar[i].fd(20)
-                else:
-                    temp_pos = list(self.bar[i].pos())
-                    self.bar[i].goto(x=pos[0], y=pos[1])
-                    pos = temp_pos
+        if self.ycor() < 200:
+            self.goto(x=self.xcor(), y=self.ycor() + MOVE_DISTANCE)
 
     def move_down(self):
-        pos = None
-        if self.bar[-1].ycor() > -240:
-            print(self.bar[0].ycor())
-            for i in range(-1, -6, -1):
-                if i == -1:
-                    self.bar[i].setheading(270)
-                    pos = list(self.bar[i].pos())
-                    self.bar[i].fd(20)
-                else:
-                    temp_pos = list(self.bar[i].pos())
-                    self.bar[i].goto(x=pos[0], y=pos[1])
-                    pos = temp_pos
-
+        if self.ycor() > -200:
+            self.goto(x=self.xcor(), y=self.ycor() - MOVE_DISTANCE)
