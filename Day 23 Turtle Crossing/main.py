@@ -2,25 +2,35 @@ from player import Player
 from turtle import Screen
 from scoreboard import Score
 from obstacles import Cars
-from time import sleep
+from random import randint
 
-cars = Cars()
-score = Score()
-player = Player()
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.title(titlestring='Turtle Crossing')
 screen.tracer(0)
 screen.listen()
-screen.onkeypress(fun=player.move_up, key='Up')
 is_game = True
+cars = Cars()
+score = Score()
+player = Player()
+screen.onkeypress(fun=player.move_up, key='Up')
+
+i = 0
 while is_game:
-    screen.update()
+    random_choice = randint(1,5)
+    cars.move()
+    if random_choice == 1:
+        cars.create_cars()
     if player.ycor() > 260:
         score.score += 1
+        cars.time *= 0.75
         score.update()
         player.teleport(x=0, y=-280)
-    cars.move()
-    sleep(0.1)
+    for car in cars.cars:
+        if car.distance(player) < 30 and car.ycor() == player.ycor():
+            score.update()
+            score.game_over()
+            is_game = False
+    screen.update()
 
 screen.exitonclick()

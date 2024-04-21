@@ -10,4 +10,4 @@ class Player(Turtle):
         self.teleport(x=0, y=-280)
 
     def move_up(self):
-        self.fd(10)
+        self.fd(20)
