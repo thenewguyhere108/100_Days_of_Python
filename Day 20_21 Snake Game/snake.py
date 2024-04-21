@@ -53,3 +53,10 @@ class Snake:
     def down(self):
         if self.snake[0].heading() == 0.00 or self.snake[0].heading() == 180:
             self.snake[0].setheading(270)
+
+    def reset(self):
+        for i in self.snake:
+            i.ht()
+        self.snake.clear()
+        self.create_snake()
+        self.head = self.snake[0]
