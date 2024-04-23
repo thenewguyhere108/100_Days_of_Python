@@ -24,9 +24,7 @@ while score < 50:
     choice = screen.textinput(title=f"{score}/50 Guess the state", prompt="Enter the name of a state")
     choice = choice.title()
     if choice == "Exit":
-        for i in data_list.keys():
-            if i not in answers:
-                missing_states.append(i)
+        missing_states = [n for n in data_list if n not in answers]
         df = pd.DataFrame(missing_states)
         df.to_csv("missing_states.csv")
         break
