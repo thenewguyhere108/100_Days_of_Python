@@ -19,17 +19,18 @@ def search():
     website = box_website.get()
     if website == "":
         messagebox.showerror(title="Search", message="Website field empty")
-    try:
-        with open("data.json", mode="r") as file:
-            data = json.load(file)
-    except FileNotFoundError:
-        messagebox.showerror(title="Search", message="File not found")
     else:
         try:
-            messagebox.showinfo(title="Search", message=f"Website: {website}\nEmail: {data[website.title()]["email"]}\n"
-                                                        f"Password: {data[website.title()]["password"]}")
-        except KeyError:
-            messagebox.showerror(title="Search", message="Website not found")
+            with open("data.json", mode="r") as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            messagebox.showerror(title="Search", message="Data File not found")
+        else:
+            try:
+                messagebox.showinfo(title="Search", message=f"Website: {website}\nEmail: {data[website.title()]["email"]}\n"
+                                                            f"Password: {data[website.title()]["password"]}")
+            except KeyError:
+                messagebox.showerror(title="Search", message="Website not found")
 
 
 def save():
@@ -70,23 +71,23 @@ canvas.grid(column=1, row=0)
 label_website = Label(text="Website:", fg="black", bg="white")
 label_website.grid(column=0, row=1, )
 box_website = Entry(width=25)
-box_website.grid(column=1, row=1, columnspan=2)
+box_website.grid(column=1, row=1)
 
 label_email = Label(text="Email / Username:", fg="black", bg="white")
 label_email.grid(column=0, row=2,)
-box_email = Entry(width=35)
+box_email = Entry(width=25)
 box_email.insert(0, "sandyorton7@gmail.com")
 box_email.grid(column=1, row=2, columnspan=1)
 
 label_password = Label(text="Password:", fg="black", bg="white")
 label_password.grid(column=0, row=3)
-box_password = Entry(width=21)
+box_password = Entry(width=25)
 box_password.grid(column=1, row=3)
 
 button_generate = Button(text="Generate Password", command=passwd)
 button_generate.grid(column=2, row=3)
 button_add = Button(text="Add", justify="center", command=save, width=36)
 button_add.grid(row=4, column=1, columnspan=2)
-button_search = Button(text="Search", command=search)
-button_search.grid(column=3, row=1)
+button_search = Button(text="Search", command=search, width=15)
+button_search.grid(column=2, row=1)
 window.mainloop()
